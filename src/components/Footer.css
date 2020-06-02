@@ -1,0 +1,14 @@
+.Footer {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 10em);
+  background-color: var(--sec-bg-color);
+  padding: 1em 5em;
+}
+
+.Footer p {
+  font-size: 0.8em;
+  margin-block-start: 0.5em;
+  margin-block-end: 0;
+}

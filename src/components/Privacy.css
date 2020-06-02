@@ -1,0 +1,17 @@
+.Privacy h2 {
+  text-align: center;
+}
+
+.Privacy img {
+  width: 25%;
+  display: block;
+  margin: 0 auto;
+}
+
+.Privacy p {
+  text-align: center;
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 1em;
+}

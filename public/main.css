@@ -1,0 +1,32 @@
+:root {
+  --main-bg-color: #EEE;
+  --sec-bg-color: #FFF;
+  --ter-bg: #6247AA;
+  --text-a: #111;
+  --text-b: #DDD;
+  --border-a: #BBB;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+  background: rgba(var(--main-bg-color,255,255,255),1);
+  height: 100%;
+  color: rgba(var(--text-a,0,0,0),1);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  background-color: var(--main-bg-color);
+}

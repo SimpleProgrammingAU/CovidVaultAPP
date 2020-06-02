@@ -1,0 +1,8 @@
+.Header{
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.Header > img {
+  width: 100%;
+}

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg981"
+   version="1.1"
+   viewBox="0 0 500 500">
+  <metadata
+     id="metadata987">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs985" />
+  <style
+     id="style902">
+		.w {
+			stroke: #f58220;
+			stroke-opacity: 0.5;
+			stroke-width: 50;
+			fill: none;
+		}
+		.e {
+			stroke: #53a392;
+			stroke-opacity: 0.5;
+			stroke-width: 50;
+			fill: none;
+		}
+		.n {
+			stroke: #465268;
+			stroke-opacity: 0.5;
+			stroke-width: 50;
+			fill: none;
+		}
+		.s {
+			stroke: #af2c27;
+			stroke-opacity: 0.5;
+			stroke-width: 50;
+			fill: none;
+		}
+		.o {
+			opacity: 1;
+			fill: #ffffff;
+			fill-opacity: 1;
+			stroke: none;
+		}
+	</style>
+  <g
+     id="west">
+	<line 
+		x1="5"
+		y1="175"
+		x2="495"
+		y2="175"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		class="w">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.67;0.83;1"
+			begin="0"
+			dur="6"
+			repeatCount="indefinite" />
+
+	</line>
+	<path
+		class="w"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 5,225
+		   h 115
+		   a 155 155 90 0 1 155,155
+		   v 115">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.56;0.78;1"
+			begin="0"
+			dur="4.5"
+			repeatCount="indefinite" />
+	</path>
+	<path
+		class="w"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 5,125
+		   h 70
+		   a 50 50 90 0 0 50,-50
+		   v -70">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.11;0.56;1"
+			begin="0"
+			dur="2.25"
+			repeatCount="indefinite" />
+	</path>
+  </g>
+  <g
+     id="east">
+    <line 
+		x1="495"
+		y1="325"
+		x2="5"
+		y2="325"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		class="e">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.4;0.6;1"
+			begin="0"
+			dur="5"
+			repeatCount="indefinite" />
+	</line>
+	<path
+		class="e"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 495,275
+		   h -115
+		   a 155 155 270 0 1 -155,-155
+		   v -115">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.43;0.71;1"
+			begin="0"
+			dur="3.5"
+			repeatCount="indefinite" />
+	</path>
+	<path
+		class="e"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 495,375
+		   h -70
+		   a 50 50 90 0 0 -50,50
+		   v 70">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.53;0.76;1"
+			begin="0"
+			dur="4.25"
+			repeatCount="indefinite" />
+	</path>
+  </g>
+  <g
+     id="north">
+    <line 
+		x1="325"
+		y1="5"
+		x2="325"
+		y2="495"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		class="n">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.5;0.75;1"
+			begin="0"
+			dur="4"
+			repeatCount="indefinite" />
+	</line>
+	<path
+		class="n"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 275,5
+		   v 115
+		   a 155 155 270 0 1 -155,155
+		   h -115">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.64;0.82;1"
+			begin="0"
+			dur="5.5"
+			repeatCount="indefinite" />
+	</path>
+	<path
+		class="n"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 375,5
+		   v 70
+		   a 50 50 90 0 0 50,50
+		   h 70">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.38;0.69;1"
+			begin="0"
+			dur="3.25"
+			repeatCount="indefinite" />
+	</path>
+  </g>
+  <g
+     id="south">
+    <line 
+		x1="175"
+		y1="495"	
+		x2="175"
+		y2="5"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		class="s">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.33;0.67;1"
+			begin="0"
+			dur="3"
+			repeatCount="indefinite" />
+	</line>
+	<path
+		class="s"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 225,495
+		   v -115
+		   a 155 155 90 0 1 155,-155
+		   h 115">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.2;0.6;1"
+			begin="0"
+			dur="2.5"
+			repeatCount="indefinite" />
+	</path>
+	<path
+		class="s"
+		stroke-dasharray="500"
+		stroke-dashoffset="500"
+		d="M 125,495
+		   v -70
+		   a 50 50 90 0 0 -50,-50
+		   h -70">
+		<animate
+			attributeName="stroke-dashoffset"
+			values="500;500;0;-500"
+			keyTimes="0;0.62;0.81;1"
+			begin="0"
+			dur="5.25"
+			repeatCount="indefinite" />
+	</path>
+  </g>
+  <g
+     id="overlay">
+    <path
+	   class="o"
+       d="M 0 0 L 0 500 L 500 500 L 500 0 L 0 0 z M 250 25 A 225 225 0 0 1 475 250 A 225 225 0 0 1 250 475 A 225 225 0 0 1 25 250 A 225 225 0 0 1 250 25 z " />
+  </g>
+</svg>
