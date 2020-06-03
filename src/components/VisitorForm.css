@@ -13,6 +13,10 @@ form {
     text-align: center;
 }
 
+.VisitorForm .error {
+  color: red;
+}
+
 .pure-control-group input[type=text] {
   box-shadow: none !important;
   background-color: var(--main-bg-color);

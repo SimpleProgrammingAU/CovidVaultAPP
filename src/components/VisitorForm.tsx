@@ -1,33 +1,108 @@
 import './VisitorForm.css';
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { spinner } from '../actions';
 
-export default class VisitorForm extends Component {
+class VisitorForm extends Component<any, any> {
 
-  private forceAU = (e:React.FocusEvent<HTMLInputElement>) => {
+  private _id:number;
+
+  constructor(props:any) {
+    super(props);
+    this._id = 0;
+    this.state = {
+      name: "",
+      phone: "",
+      formDisplay: "inline-block",
+      formButton: "Submit",
+      formButtonDisabled: false,
+      errorMsg: ""
+    }
+  }
+
+  private _nameChange = (e:React.FocusEvent<HTMLInputElement>) => {
+    this.setState({name: e.target.value});
+  }
+
+  private _phoneChange = (e:React.FocusEvent<HTMLInputElement>) => {
     if (e.target.value.length < 3) e.target.value = "+61";
     e.target.value = e.target.value.replace(/[^0-9|+]/, '');
     if (e.target.value.length > 12) e.target.value = e.target.value.substr(0, 12);
+    this.setState({phone: e.target.value})
+  }
+
+  private _formSubmit = (e:React.FormEvent<HTMLFormElement>):void => {
+    this.setState({formButtonDisabled: true});
+    this.props.spinner();
+    if (this._id === 0) {
+      axios.post("api/entry/1", {
+        name: this.state.name,
+        phone: this.state.phone
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        if (response.data.success) {
+          this._id = response.data.data.id;
+          this.setState({
+            formDisplay: "none",
+            formButton: "Check Out",
+            formButtonDisabled: false,
+            errorMsg: ""
+          });
+        }
+      }).catch((error) => {
+        this.setState({
+          formButtonDisabled: false,
+          errorMsg: error.response.data.messages[0]
+        });
+      }).finally(this.props.spinner());
+    } else {
+      axios.patch("api/exit/" + this._id).then((response) => {
+        if (response.data.success) {
+          this.setState({
+            formButton: "Goodbye",
+            errorMsg: ""
+          });
+        }
+      }).catch((error) => {
+        this.setState({
+          formButtonDisabled: false,
+          errorMsg: error.response.data.messages[0]
+        });
+      }).finally(this.props.spinner());
+    }
+    e.preventDefault();
   }
 
   render() {
     return (
       <div className="VisitorForm">
-        <form className="pure-form pure-form-aligned">
+        <form className="pure-form pure-form-aligned" onSubmit={this._formSubmit}>
           <fieldset>
           <div className="pure-control-group">
-              <input type="text" placeholder="Name" />
+              <input type="text" placeholder="Name" style={{display: this.state.formDisplay}} onChange={this._nameChange} value={this.state.name} />
           </div>
           <div className="pure-control-group">
-              <input type="text" placeholder="Phone number" onChange={this.forceAU} onFocus={this.forceAU} />
+              <input type="text" placeholder="Phone number" style={{display: this.state.formDisplay}} onChange={this._phoneChange} onFocus={this._phoneChange} value={this.state.phone} />
           </div>
           <div className="submit-group  ">
-            <button type="submit" className="pure-button pure-button-primary">Submit</button>
+            <button type="submit" className="pure-button pure-button-primary" disabled={this.state.formButtonDisabled}>{this.state.formButton}</button>
           </div>
           </fieldset>
         </form>
-        <p>This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses during the COVID-19 recovery.</p>
+        <p className="error">{this.state.errorMsg}</p>
+        <p>This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses during the COVID-19 recovery. For more details, see the <a href="proposal.pdf">project letter</a>.</p>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state:any) => {
+  return { };
+}
+
+export default connect(mapStateToProps, { spinner })(VisitorForm);

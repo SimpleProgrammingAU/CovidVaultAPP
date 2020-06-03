@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+div.container > section:last-child {
+  margin-bottom: 10em;
+}
+
 .container {
   display: flex;
   flex-direction: column;
