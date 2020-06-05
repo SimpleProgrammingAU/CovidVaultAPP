@@ -3,15 +3,19 @@ import './VisitorForm.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import queryString from 'query-string';
 import { spinner } from '../actions';
 
 class VisitorForm extends Component<any, any> {
 
   private _id:number;
+  private _locationID:number;
 
   constructor(props:any) {
     super(props);
     this._id = 0;
+    this._locationID =
+      typeof queryString.parse(window.location.search).id === "undefined" ? 1 : parseInt(queryString.parse(window.location.search).id as string);
     this.state = {
       name: "",
       phone: "",
@@ -37,7 +41,7 @@ class VisitorForm extends Component<any, any> {
     this.setState({formButtonDisabled: true});
     this.props.spinner();
     if (this._id === 0) {
-      axios.post("api/entry/1", {
+      axios.post('api/entry/' + this._locationID, {
         name: this.state.name,
         phone: this.state.phone
       }, {
