@@ -11,7 +11,7 @@ export default class Privacy extends Component {
       <div className="Privacy">
         <h2>Privacy Policy</h2>
         <img src={calendar} alt="Data held for two months" />
-        <p>your data is erased in two months</p>
+        <p>your data is erased in 28 days</p>
         <img src={lock} alt="Only accessible to authorised contact" />
         <p>we'll only share it with the business' authorised contact</p>
         <img src={megaphone} alt="Not for marketing" />

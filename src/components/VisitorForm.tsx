@@ -20,9 +20,10 @@ class VisitorForm extends Component<any, any> {
       name: "",
       phone: "",
       formDisplay: "inline-block",
-      formButton: "Submit",
+      formButton: "Check In",
       formButtonDisabled: false,
-      errorMsg: ""
+      errorMsg: "",
+      coffeeDisplay: "none"
     }
   }
 
@@ -41,6 +42,7 @@ class VisitorForm extends Component<any, any> {
     this.setState({formButtonDisabled: true});
     this.props.spinner();
     if (this._id === 0) {
+      this.setState({formButton: "Sending..."});
       axios.post('api/entry/' + this._locationID, {
         name: this.state.name,
         phone: this.state.phone
@@ -55,16 +57,19 @@ class VisitorForm extends Component<any, any> {
             formDisplay: "none",
             formButton: "Check Out",
             formButtonDisabled: false,
+            coffeeDisplay: "inline-flex",
             errorMsg: ""
           });
         }
       }).catch((error) => {
         this.setState({
+          formButton: "Check In",
           formButtonDisabled: false,
           errorMsg: error.response.data.messages[0]
         });
       }).finally(this.props.spinner());
     } else {
+      this.setState({formButton: "Sending..."});
       axios.patch("api/exit/" + this._id).then((response) => {
         if (response.data.success) {
           this.setState({
@@ -100,6 +105,9 @@ class VisitorForm extends Component<any, any> {
         </form>
         <p className="error">{this.state.errorMsg}</p>
         <p>This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses during the COVID-19 recovery. For more details, see the <a href="proposal.pdf">project letter</a>.</p>
+        <a className="bmc-button" style={{display: this.state.coffeeDisplay}} target="_blank" rel="noopener noreferrer" href="https://www.buymeacoffee.com/SimplePrg"><img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Support Development" />
+          <span style={{marginLeft: "5px", fontSize: "28px !important"}}>Support Development</span>
+        </a>
       </div>
     );
   }

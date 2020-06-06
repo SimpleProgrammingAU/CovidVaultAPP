@@ -23,8 +23,8 @@ export default class Header extends Component<any, any> {
       .get("api/account/" + this._id, {
         data: {},
         headers: {
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       })
       .then((response) => {
         if (response.data.success) {
@@ -35,7 +35,7 @@ export default class Header extends Component<any, any> {
         }
       })
       .catch((e) => {
-        console.error(e.response.data.messages[0])
+        console.error(e.response.data.messages[0]);
       })
       .finally(() => {});
   }
