@@ -4,14 +4,14 @@ import axios from "axios";
 import queryString from "query-string";
 
 export default class Header extends Component<any, any> {
-  private _id: number;
+  private _id: string;
 
   constructor(props: any) {
     super(props);
     this._id =
       typeof queryString.parse(window.location.search).id === "undefined"
-        ? 1
-        : parseInt(queryString.parse(window.location.search).id as string);
+        ? "1"
+        : (queryString.parse(window.location.search).id as string).toString();
     this.state = {
       name: "",
       logo: "",
@@ -44,7 +44,7 @@ export default class Header extends Component<any, any> {
     if (this.state.logo.length > 0)
       return (
         <div className="Header">
-          <img src={"images/" + this.state.logo} alt="Logo" />
+          <img src={"./images/" + this.state.logo} alt="Logo" />
         </div>
       );
     else

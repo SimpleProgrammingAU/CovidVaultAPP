@@ -23,6 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # developer specific files
-public/privacy.pdf
-public/proposal.pdf
 **/images/logo*
+public/files

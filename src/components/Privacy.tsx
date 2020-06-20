@@ -16,7 +16,7 @@ export default class Privacy extends Component {
         <p>we'll only share it with the business' authorised contact</p>
         <img src={megaphone} alt="Not for marketing" />
         <p>we won't use it for marketing</p>
-        <p><a href="privacy.pdf">visit the complete policy here</a></p>
+        <p><a href="./files/privacy.pdf">visit the complete policy here</a></p>
       </div>
     );
   }

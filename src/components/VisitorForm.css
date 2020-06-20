@@ -16,7 +16,12 @@ form {
   color: red;
 }
 
-.pure-control-group input[type="text"] {
+.VisitorForm .success {
+  color: green;
+}
+
+.pure-control-group input[type="text"],
+.pure-control-group input[type="password"] {
   box-shadow: none;
   background-color: var(--main-bg-color);
   font-size: 1.5em;
