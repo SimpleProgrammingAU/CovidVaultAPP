@@ -18,8 +18,8 @@ class VisitorForm extends Component<any, any> {
         ? "1"
         : (queryString.parse(window.location.search).id as string).toString();
     this.state = {
-      name: "",
-      phone: "",
+      name: localStorage.getItem('name') === null ? "" : localStorage.name,
+      phone: localStorage.getItem('phone') === null ? "" : localStorage.phone,
       formDisplay: "inline-block",
       formButton: "Check In",
       formButtonDisabled: false,
@@ -64,6 +64,8 @@ class VisitorForm extends Component<any, any> {
         .then((response) => {
           if (response.data.success) {
             this._id = response.data.data.id;
+            localStorage.name = this.state.name;
+            localStorage.phone = this.state.phone;
             this.setState({
               formDisplay: "none",
               formButton: "Check Out",
