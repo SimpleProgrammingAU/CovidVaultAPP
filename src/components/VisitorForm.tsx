@@ -2,7 +2,7 @@ import "./VisitorForm.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import queryString from "query-string";
 import { spinner } from "../actions";
 

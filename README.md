@@ -3,6 +3,10 @@ A GUI to implement the CovidVaultAPI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Demo
+
+A functional demonstration of the CovidVault Application can be seen on [my blog](https://www.simpleprogramming.com.au/covid).
+
 ## Available Scripts
 
 In the project directory, you can run:
