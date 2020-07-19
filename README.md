@@ -1,6 +1,10 @@
 # CovidVaultAPP
 A GUI to implement the CovidVaultAPI
 
+[![GitHub license](https://img.shields.io/badge/license-MPL--2.0-brightgreen)](https://github.com/SimpleProgrammingAU/CovidVaultAPP/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/SimpleProgrammingAU/CovidVaultAPP)](https://GitHub.com/SimpleProgrammingAU/CovidVaultAPP/graphs/contributors/)
+[![GitHub issues](https://img.shields.io/github/issues/SimpleProgrammingAU/CovidVaultAPP)](https://GitHub.com/SimpleProgrammingAU/CovidVaultAPP/issues/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Demo
