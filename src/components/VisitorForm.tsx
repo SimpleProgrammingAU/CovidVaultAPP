@@ -18,8 +18,8 @@ class VisitorForm extends Component<any, any> {
         ? "1"
         : (queryString.parse(window.location.search).id as string).toString();
     this.state = {
-      name: localStorage.getItem('name') === null ? "" : localStorage.name,
-      phone: localStorage.getItem('phone') === null ? "" : localStorage.phone,
+      name: localStorage.getItem("name") === null ? "" : localStorage.name,
+      phone: localStorage.getItem("phone") === null ? "" : localStorage.phone,
       formDisplay: "inline-block",
       formButton: "Check In",
       formButtonDisabled: false,
@@ -28,8 +28,9 @@ class VisitorForm extends Component<any, any> {
       coffeeDisplay: "none",
       followOnText: "",
       followOnImg: "",
-      followOnURL: ""
+      followOnURL: "",
     };
+    
   }
 
   private _nameChange = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -110,11 +111,42 @@ class VisitorForm extends Component<any, any> {
     e.preventDefault();
   };
 
+  componentDidMount() {
+    axios
+      .get("api/followon/" + this._locationID)
+      .then((response: AxiosResponse) => {
+        if (response.data.success) {
+          const { data } = response.data;
+          const expiry = data.expiry === null ? null : new Date(response.data.data.expiry);
+          if (expiry === null || expiry.getTime() > Date.now()) {
+            this.setState({
+              followOnText: data.text,
+              followOnImg: data.img,
+              followOnURL: data.url,
+            });
+          }
+        }
+      })
+      .catch((e) => {
+        if (e.response.data.statusCode !== 404) console.error(e.response.data.messages[0]);
+      });
+  }
+
   render() {
     const errorMsg = this.state.errorMsg.length === 0 ? null : <p className="error">{this.state.errorMsg}</p>;
     const successMsg = this.state.successMsg.length === 0 ? null : <p className="success">{this.state.successMsg}</p>;
-    const followOnText = (this.state.successMsg.length > 0 && this.state.followOnText.length > 0) ? <p className="followon"><a href={this.state.followOnURL}>{this.state.followOnText}</a></p> : null;
-    const followOnImg = (this.state.successMsg.length > 0 && this.state.followOnImg.length > 0) ? <a href={this.state.followOnURL}><img src={this.state.followOnImg} alt="" /></a> : null;
+    const followOnText =
+      this.state.successMsg.length > 0 && this.state.followOnText.length > 0 ? (
+        <p className="followon">
+          <a href={this.state.followOnURL}>{this.state.followOnText}</a>
+        </p>
+      ) : null;
+    const followOnImg =
+      this.state.successMsg.length > 0 && this.state.followOnImg.length > 0 ? (
+        <a href={this.state.followOnURL}>
+          <img style={{maxWidth: '100%'}} src={`images/${this.state.followOnImg}`} alt="Promotional link" />
+        </a>
+      ) : null;
     return (
       <div className="VisitorForm">
         {successMsg}
