@@ -4,6 +4,20 @@
   "private": true,
   "homepage": "/covid/",
   "dependencies": {
+    "audit": "0.0.6",
+    "axios": "0.20.0",
+    "ordinal": "1.0.3",
+    "fix": "0.0.6",
+    "query-string": "6.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "7.2.1",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "4.0.5",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.9.0",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^11.2.1",
@@ -15,23 +29,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "7.1.9",
     "@types/react-router-dom": "5.1.5",
-    "audit": "0.0.6",
-    "axios": "0.19.2",
-    "fix": "0.0.6",
-    "query-string": "6.13.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "7.2.0",
-    "react-router-dom": "5.2.0",
-    "react-scripts": "3.4.1",
-    "redux": "4.0.5",
-    "typescript": "^3.9.5"
+    "critical": "2.0.3",
+    "gzipper": "4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "node critical && gzipper c ./build ./gzip -v"
   },
   "eslintConfig": {
     "extends": "react-app"
