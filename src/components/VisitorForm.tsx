@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import axios, { AxiosResponse } from "axios";
 import queryString from "query-string";
 import { spinner } from "../actions";
+import ordinal from "ordinal";
 
 class VisitorForm extends Component<any, any> {
   private _id: number;
@@ -64,7 +65,7 @@ class VisitorForm extends Component<any, any> {
         )
         .then((response) => {
           if (response.data.success) {
-            this._id = response.data.data.id;
+            this._id = parseInt(response.data.data.id);
             localStorage.name = this.state.name;
             localStorage.phone = this.state.phone;
             this.setState({
@@ -73,7 +74,7 @@ class VisitorForm extends Component<any, any> {
               formButtonDisabled: false,
               coffeeDisplay: "inline-flex",
               errorMsg: "",
-              successMsg: "You have been successfully checked in. Don't forget to check out as you leave.",
+              successMsg: `You are the ${ordinal(this._id)} person to check-in using CovidVault. Your support is helping Australia be a safer place as we grapple with the challenges of COVID-19.`,
             });
           }
         })

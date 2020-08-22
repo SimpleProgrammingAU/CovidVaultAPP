@@ -3,6 +3,7 @@ import "./KioskForm.css";
 import React, { Component } from "react";
 import queryString from "query-string";
 import Axios from "axios";
+import ordinal from "ordinal";
 
 class KioskForm extends Component<any, any> {
   private _locationID: string;
@@ -72,7 +73,7 @@ class KioskForm extends Component<any, any> {
       .then((response) => {
         if (response.data.success) {
           this.setState({
-            successMsg: `Thank you ${this.state.name}, you have been successfully checked in.`,
+            successMsg: `Thank you ${this.state.name}, you are the ${ordinal(parseInt(response.data.data.id))} person to check-in using CovidVault. Your support is helping Australia be a safer place as we grapple with the challenges of COVID-19.`,
           });
           this._resetCountdown(6);
         }
