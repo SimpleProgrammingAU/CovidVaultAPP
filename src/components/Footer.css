@@ -9,6 +9,7 @@
 
 .Footer p {
   font-size: 0.8em;
+  font-size: max(0.8em, 12px);
   margin-block-start: 0.5em;
   margin-block-end: 0;
 }
