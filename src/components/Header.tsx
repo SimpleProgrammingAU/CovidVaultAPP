@@ -1,57 +1,41 @@
 import "./Header.css";
 import React, { Component } from "react";
-import axios from "axios";
-import queryString from "query-string";
+import { connect } from 'react-redux';
 
-export default class Header extends Component<any, any> {
-  private _id: string;
-
-  constructor(props: any) {
-    super(props);
-    this._id =
-      typeof queryString.parse(window.location.search).id === "undefined"
-        ? "1"
-        : (queryString.parse(window.location.search).id as string).toString();
-    this.state = {
-      name: "",
-      logo: "",
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("api/account/" + this._id, {
-        data: {},
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        if (response.data.success) {
-          this.setState({
-            name: response.data.data.name,
-            logo: response.data.data.logo,
-          });
-        }
-      })
-      .catch((e) => {
-        console.error(e.response.data.messages[0]);
-      })
-      .finally(() => {});
-  }
-
+class Header extends Component<HeaderProps, HeaderState> {
   render() {
-    if (this.state.logo.length > 0)
+    const { locationName, logoURL } = this.props;
+    if (logoURL.length > 0)
       return (
         <div className="Header">
-          <img src={"./images/" + this.state.logo} alt="Logo" />
+          <img src={"./images/" + logoURL} alt="Logo" />
         </div>
       );
     else
       return (
         <div className="Header">
-          <h1>{this.state.name}</h1>
+          <h1>{locationName}</h1>
         </div>
       );
   }
+}
+
+const mapStateToProps = (state: HeaderMapState) => {
+  const {locationName, logoURL} = state;
+  return {
+    locationName,
+    logoURL,
+  };
+};
+
+export default connect(mapStateToProps, { })(Header);
+
+interface HeaderProps {
+  locationName: string;
+  logoURL: string;
+}
+interface HeaderState {}
+interface HeaderMapState{
+  locationName:string;
+  logoURL: string;
 }

@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "/covid/",
   "dependencies": {
+    "@material-ui/core": "4.11.0",
     "audit": "0.0.6",
     "axios": "0.20.0",
     "ordinal": "1.0.3",

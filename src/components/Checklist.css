@@ -1,0 +1,9 @@
+.Checklist label {
+  padding: 0.5em;
+  border-bottom: thin solid #333;
+  margin-bottom: 0.5em;
+}
+
+.Checklist label:last-of-type {
+  border: none;
+}

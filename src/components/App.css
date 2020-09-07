@@ -4,24 +4,13 @@
   overflow: hidden;
 }
 
-div.container > section:last-child {
-  margin-bottom: 10em;
-}
-
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  margin: 0 auto;
-  max-width: 24em;
-  width: 100%
-}
-
-section {
-  flex: 1;
+  margin-top: 1em;
   background-color: var(--sec-bg-color);
   border: 1px solid var(--border-a);
-  border-radius: 1px;
-  width: 100%;
-  margin-top: 2em;
+  border-radius: 0.1em;
+}
+
+.container.end {
+  margin-bottom: 10em;
 }
