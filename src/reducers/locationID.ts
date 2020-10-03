@@ -1,9 +1,9 @@
 import { Action } from "../interfaces";
 
-export const locationID = (id: number = 1, action: Action<number>): number => {
+export const locationID = (id: string = "1", action: Action<string>): string => {
   switch (action.type) {
     case "SET_LOCATION_ID":
-      return parseInt(action.payload.toString());
+      return action.payload;
   }
   return id;
 };

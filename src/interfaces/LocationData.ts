@@ -1,6 +1,6 @@
 export default interface LocationData {
   name: string;
-  logo: string;
+  avatar: boolean;
   selectAll: boolean;
   statements: string[];
 }

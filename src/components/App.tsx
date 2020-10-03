@@ -1,12 +1,11 @@
 import "./App.css";
 
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import axios from "axios";
 import { Container, CssBaseline } from "@material-ui/core";
-import { CornerLink, Footer, Header, Privacy, Spinner, VisitorForm } from "./";
+import { Footer, Header, Privacy, Spinner, VisitorForm } from "./";
 import { saveLocationData, updateLocationID } from "../actions";
 
 class App extends Component<AppProps, AppState> {
@@ -15,16 +14,16 @@ class App extends Component<AppProps, AppState> {
     props.updateLocationID(
       typeof queryString.parse(window.location.search).id === "undefined"
         ? "1"
-        : (queryString.parse(window.location.search).id as string).toString()
+        : (queryString.parse(window.location.search, {parseNumbers: false}).id as string).toString()
     );
   }
   componentDidMount() {
     axios
       .get(
-        "api/account/" +
+        "../api/account/" +
           (typeof queryString.parse(window.location.search).id === "undefined"
             ? "1"
-            : (queryString.parse(window.location.search).id as string).toString()),
+            : (queryString.parse(window.location.search, {parseNumbers: false})).id as string).toString(),
         {
           data: {},
           headers: {
@@ -43,13 +42,10 @@ class App extends Component<AppProps, AppState> {
 
   render() {
     return (
-      <BrowserRouter>
+      <>
         <CssBaseline />
         <div className="App">
           <Spinner />
-          <CornerLink />
-          <Switch>
-            <Route path="/covid/">
               <Container className="container" maxWidth="sm">
                 <Header />
                 <VisitorForm kiosk={typeof queryString.parse(window.location.search).kiosk !== "undefined"} />
@@ -57,11 +53,9 @@ class App extends Component<AppProps, AppState> {
               <Container className="container end" maxWidth="sm">
                 <Privacy />
               </Container>
-            </Route>
-          </Switch>
           <Footer />
         </div>
-      </BrowserRouter>
+        </>
     );
   }
 }

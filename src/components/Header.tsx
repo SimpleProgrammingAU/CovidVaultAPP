@@ -1,14 +1,14 @@
 import "./Header.css";
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Header extends Component<HeaderProps, HeaderState> {
   render() {
-    const { locationName, logoURL } = this.props;
-    if (logoURL.length > 0)
+    const { hasAvatar, locationID, locationName } = this.props;
+    if (hasAvatar)
       return (
         <div className="Header">
-          <img src={"./images/" + logoURL} alt="Logo" />
+          <img src={`https://www.covidvault.com.au/api/controller/render.php?id=${locationID}&type=account`} alt="Logo" />
         </div>
       );
     else
@@ -21,21 +21,24 @@ class Header extends Component<HeaderProps, HeaderState> {
 }
 
 const mapStateToProps = (state: HeaderMapState) => {
-  const {locationName, logoURL} = state;
+  const { hasAvatar, locationID, locationName } = state;
   return {
+    hasAvatar,
+    locationID,
     locationName,
-    logoURL,
   };
 };
 
-export default connect(mapStateToProps, { })(Header);
+export default connect(mapStateToProps, {})(Header);
 
 interface HeaderProps {
+  hasAvatar: boolean;
+  locationID: string;
   locationName: string;
-  logoURL: string;
 }
 interface HeaderState {}
-interface HeaderMapState{
-  locationName:string;
-  logoURL: string;
+interface HeaderMapState {
+  hasAvatar: boolean;
+  locationID: string;
+  locationName: string;
 }

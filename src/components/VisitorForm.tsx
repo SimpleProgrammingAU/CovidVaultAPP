@@ -55,7 +55,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
       this.setState({ form: { ...this.state.form, btnText: "Sending..." } });
       axios
         .post(
-          "api/entry/" + this.props.locationID,
+          "../api/entry/" + this.props.locationID,
           {
             name: this.state.form.name,
             phone: this.state.form.phone,
@@ -68,7 +68,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
         )
         .then((response) => {
           if (response.data.success) {
-            this._id = parseInt(response.data.data.id);
+            this._id = this.props.kiosk ? 0 : parseInt(response.data.data.id);
             localStorage.name = this.state.form.name;
             localStorage.phone = this.state.form.phone;
             this.setState({
@@ -110,7 +110,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
         },
       });
       axios
-        .patch("api/exit/" + this._id)
+        .patch("../api/exit/" + this._id)
         .then((response) => {
           if (response.data.success) {
             this.setState({
@@ -171,7 +171,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
 
   componentDidMount() {
     axios
-      .get("api/followon/" + this.props.locationID)
+      .get("../api/followon/" + this.props.locationID)
       .then((response: AxiosResponse) => {
         if (response.data.success) {
           const { data } = response.data;
