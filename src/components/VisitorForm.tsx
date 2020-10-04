@@ -258,7 +258,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
         {errorMsg}
         <p>
           This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses
-          during the COVID-19 recovery. For more details, see the <a href="./files/proposal.pdf">project letter</a>.
+          during the COVID-19 recovery. For more details or if you would like to use CovidVault for your business, please visit the <a href="https://www.covidvault.com.au/">project homepage</a>.
         </p>
         <Funding display={coffee} />
       </div>
