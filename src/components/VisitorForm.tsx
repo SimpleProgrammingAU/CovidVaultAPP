@@ -175,16 +175,19 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
       .then((response: AxiosResponse) => {
         if (response.data.success) {
           const { data } = response.data;
-          const expiry = data.expiry === null ? null : new Date(response.data.data.expiry);
-          if (expiry === null || expiry.getTime() > Date.now()) {
-            this.setState({
-              followOn: {
-                text: data.text,
-                imgSrc: data.img,
-                href: data.url,
-              },
-            });
-          }
+          data.forEach((followOn:any) => {
+            const start = followOn.start === null ? null : new Date(followOn.start);
+            const expiry = followOn.expiry === null ? null : new Date(followOn.expiry);
+            if ((start === null || start.getTime() < Date.now()) && (expiry === null || expiry.getTime() > Date.now())) {
+              this.setState({
+                followOn: {
+                  text: followOn.text,
+                  imgSrc: "https://www.covidvault.com.au/api/controller/render.php?id=" + followOn.id,
+                  href: followOn.url,
+                },
+              });
+            }
+          });
         }
       })
       .catch((e) => {
@@ -205,8 +208,8 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
       ) : null;
     const followOnImg =
       message.success.length > 0 && followOn.imgSrc.length > 0 ? (
-        <a href={followOn.href}>
-          <img style={{ maxWidth: "100%" }} src={`images/${followOn.imgSrc}`} alt="Promotional link" />
+        <a href={followOn.href} className="followOnImg">
+          <img style={{ maxWidth: "100%" }} src={`${followOn.imgSrc}`} alt="Promotional link" />
         </a>
       ) : null;
     const submitDisabled =
@@ -258,7 +261,8 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
         {errorMsg}
         <p>
           This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses
-          during the COVID-19 recovery. For more details or if you would like to use CovidVault for your business, please visit the <a href="https://www.covidvault.com.au/">project homepage</a>.
+          during the COVID-19 recovery. For more details or if you would like to use CovidVault for your business, please visit
+          the <a href="https://www.covidvault.com.au/">project homepage</a>.
         </p>
         <Funding display={coffee} />
       </div>
