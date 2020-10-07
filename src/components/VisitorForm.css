@@ -45,3 +45,8 @@ p.followon a {
   color: var(--ter-bg);
   text-decoration: overline underline;
 }
+
+.followOnImg img {
+  display: block;
+  margin: 0 auto;
+}
