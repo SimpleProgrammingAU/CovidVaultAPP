@@ -34,7 +34,7 @@ class Checklist extends Component<ChecklistProps, ChecklistState> {
         {list}
         {selectAllCheckbox}
         <p style={{ textAlign: "left" }}>
-          If you are unable to confirm all of the above conditions, you are not permitted entry to the premisis.
+          If you are unable to confirm all of the above conditions, you are not permitted entry to the premises.
         </p>
       </FormControl>
     );
