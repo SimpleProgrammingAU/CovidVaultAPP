@@ -1,8 +1,8 @@
 import { Action } from "../interfaces";
 
-export const toggleSelectAll = (method: boolean): Action<boolean> => {
+export const toggleSelectAll = (): Action<undefined> => {
   return {
-    type: "CHECKLIST_SELECT_ALL",
-    payload: method,
+    type: "CHECKLIST_SELECT_ALL_TOGGLE",
+    payload: undefined,
   };
 };

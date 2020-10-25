@@ -1,9 +1,9 @@
-import { Action, LocationData } from "../interfaces";
+import { Action } from "../interfaces";
 
-export const selectAll = (selectAll: boolean = false, action: Action<LocationData>): boolean => {
+export const selectAll = (selectAll: boolean = false, action: Action<undefined>): boolean => {
   switch (action.type) {
-    case "SAVE_LOCATION_DATA":
-      return action.payload.selectAll;
+    case "CHECKLIST_SELECT_ALL_TOGGLE":
+      return !selectAll;
   }
   return selectAll;
 };

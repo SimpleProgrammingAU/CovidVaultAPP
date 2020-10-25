@@ -2,8 +2,12 @@ import "./Checklist.css";
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Checkbox, FormControlLabel, FormControl } from "@material-ui/core";
-import { LocationCheckitem } from "../interfaces";
+
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+
+import { Action, LocationCheckitem } from "../interfaces";
 import { toggleCheckitem, toggleSelectAll } from "../actions";
 
 class Checklist extends Component<ChecklistProps, ChecklistState> {
@@ -15,7 +19,7 @@ class Checklist extends Component<ChecklistProps, ChecklistState> {
   render = () => {
     const { selectAll, locationChecklist } = this.props;
     const selectAllCheckbox = selectAll ? (
-      <FormControlLabel label="Confirm all" control={<Checkbox onChange={({ target }) => toggleSelectAll(target.checked)} />} />
+      <FormControlLabel label="Confirm all" control={<Checkbox onChange={() => toggleSelectAll()} />} />
     ) : null;
     const list = locationChecklist.map((item, index) => {
       return (
@@ -54,8 +58,8 @@ export default connect(mapStateToProps, { toggleCheckitem, toggleSelectAll })(Ch
 interface ChecklistProps {
   locationChecklist: LocationCheckitem[];
   selectAll: boolean;
-  toggleCheckitem: Function;
-  toggleSelectAll: Function;
+  toggleCheckitem: (index: number) => Action<number>;
+  toggleSelectAll: () => Action<undefined>;
 }
 interface ChecklistState {
   checked: boolean[];

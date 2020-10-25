@@ -4,10 +4,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios, { AxiosResponse } from "axios";
 import ordinal from "ordinal";
+
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+
 import { Funding, Checklist } from "./";
-import { toggleSelectAll, spinner } from "../actions";
-import { TextField, Button } from "@material-ui/core";
-import { LocationCheckitem } from "../interfaces";
+import { toggleSelectAll } from "../actions";
+import { Action, LocationCheckitem } from "../interfaces";
 
 class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
   private _id: number;
@@ -196,7 +199,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
   }
 
   render() {
-    const { locationChecklist } = this.props;
+    const { locationChecklist, locationID } = this.props;
     const { coffee, form, message, followOn } = this.state;
     const errorMsg = message.error.length === 0 ? null : <p className="error">{message.error}</p>;
     const successMsg = message.success.length === 0 ? null : <p className="success">{message.success}</p>;
@@ -215,9 +218,11 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
     const submitDisabled =
       form.btnDisabled || locationChecklist.length !== locationChecklist.reduce((a, c) => (a += c.checked ? 1 : 0), 0);
     const checklist = form.btnText === "Check Out" || form.btnText === "Goodbye" || this._countdown > 0 ? null : <Checklist />;
+    const demoWarning = (locationID === "8634291744168120016") ? <p>This is a demonstration page. If you have arrived here by accident, please scan the QR Code again or ask for assistance.</p> : null;
     return (
       <div className="VisitorForm">
         {successMsg}
+        {demoWarning}
         <form onSubmit={this._formSubmit}>
           {checklist}
           <TextField
@@ -279,14 +284,14 @@ const mapStateToProps = (state: VisitorFormMapState) => {
   };
 };
 
-export default connect(mapStateToProps, { toggleSelectAll, spinner })(VisitorForm);
+export default connect(mapStateToProps, { toggleSelectAll })(VisitorForm);
 
 interface VisitorFormProps {
   kiosk: boolean;
-  locationID: number;
+  locationID: string;
   locationChecklist: LocationCheckitem[];
   selectAll: boolean;
-  toggleSelectAll: Function;
+  toggleSelectAll: () => Action<undefined>;
 }
 
 interface VisitorFormState {
@@ -310,7 +315,7 @@ interface VisitorFormState {
 }
 
 interface VisitorFormMapState {
-  locationID: number;
+  locationID: string;
   locationChecklist: LocationCheckitem[];
   selectAll: boolean;
 }

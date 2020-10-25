@@ -4,16 +4,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
 import axios from "axios";
-import { Container, CssBaseline } from "@material-ui/core";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { Footer, Header, Privacy, Spinner, VisitorForm } from "./";
 import { saveLocationData, updateLocationID } from "../actions";
+import { Action, LocationData } from "../interfaces";
 
 class App extends Component<AppProps, AppState> {
   constructor(props: AppProps) {
     super(props);
     props.updateLocationID(
       typeof queryString.parse(window.location.search).id === "undefined"
-        ? "1"
+        ? "8634291744168120016"
         : (queryString.parse(window.location.search, {parseNumbers: false}).id as string).toString()
     );
   }
@@ -22,7 +24,7 @@ class App extends Component<AppProps, AppState> {
       .get(
         "../api/account/" +
           (typeof queryString.parse(window.location.search).id === "undefined"
-            ? "1"
+            ? "8634291744168120016"
             : (queryString.parse(window.location.search, {parseNumbers: false})).id as string).toString(),
         {
           data: {},
@@ -70,11 +72,11 @@ const mapStateToProps = (state: AppState) => {
 export default connect(mapStateToProps, { saveLocationData, updateLocationID })(App);
 
 interface AppProps {
-  locationID: number;
-  saveLocationData: Function;
-  updateLocationID: Function;
+  locationID: string;
+  saveLocationData: (data: LocationData) => Action<LocationData>;
+  updateLocationID: (id:string) => Action<string>;
 }
 
 interface AppState {
-  locationID: number;
+  locationID: string;
 }
