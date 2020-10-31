@@ -218,7 +218,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
     const submitDisabled =
       form.btnDisabled || locationChecklist.length !== locationChecklist.reduce((a, c) => (a += c.checked ? 1 : 0), 0);
     const checklist = form.btnText === "Check Out" || form.btnText === "Goodbye" || this._countdown > 0 ? null : <Checklist />;
-    const demoWarning = (locationID === "8634291744168120016") ? <p>This is a demonstration page. If you have arrived here by accident, please scan the QR Code again or ask for assistance.</p> : null;
+    const demoWarning = (locationID === "8634291744168120016") ? <p style={{fontSize: "200%"}}>This is a demonstration page. If you have arrived here by accident, please scan the QR Code again or ask for assistance.</p> : null;
     return (
       <div className="VisitorForm">
         {successMsg}
@@ -265,7 +265,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
         {followOnImg}
         {errorMsg}
         <p>
-          This is a free <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses
+          This is an <a href="https://github.com/SimpleProgrammingAU">open-source project</a> to help Australian businesses
           during the COVID-19 recovery. For more details or if you would like to use CovidVault for your business, please visit
           the <a href="https://www.covidvault.com.au/">project homepage</a>.
         </p>
