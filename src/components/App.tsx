@@ -18,6 +18,9 @@ class App extends Component<AppProps, AppState> {
         ? "8634291744168120016"
         : (queryString.parse(window.location.search, {parseNumbers: false}).id as string).toString()
     );
+    this.state = {
+      invalidID: false,
+    }
   }
   componentDidMount() {
     axios
@@ -35,14 +38,16 @@ class App extends Component<AppProps, AppState> {
       )
       .then((response) => {
         if (response.data.success) this.props.saveLocationData(response.data.data);
+        else this.setState({invalidID: true});
       })
       .catch((e) => {
         console.error(e);
-        //if (typeof e.response !== "undefined") console.error(e.response.data.messages[0]);
+        this.setState({invalidID: true});
       });
   }
 
   render() {
+    const formDisplay = (this.state.invalidID) ? <><h2>CovidVault</h2><p className="warning">Business or location not found. Please scan the QR code again, or ask staff for assistance.</p></> : <VisitorForm kiosk={typeof queryString.parse(window.location.search).kiosk !== "undefined"} />;
     return (
       <>
         <CssBaseline />
@@ -50,7 +55,7 @@ class App extends Component<AppProps, AppState> {
           <Spinner />
               <Container className="container" maxWidth="sm">
                 <Header />
-                <VisitorForm kiosk={typeof queryString.parse(window.location.search).kiosk !== "undefined"} />
+                {formDisplay}
               </Container>
               <Container className="container end" maxWidth="sm">
                 <Privacy />
@@ -62,7 +67,7 @@ class App extends Component<AppProps, AppState> {
   }
 }
 
-const mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: AppStateTransfer) => {
   const { locationID } = state;
   return {
     locationID,
@@ -78,5 +83,9 @@ interface AppProps {
 }
 
 interface AppState {
+  invalidID: boolean;
+}
+
+interface AppStateTransfer {
   locationID: string;
 }

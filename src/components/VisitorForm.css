@@ -50,3 +50,15 @@ p.followon a {
   display: block;
   margin: 0 auto;
 }
+
+.VisitorForm .demo-warning {
+  font-size: 200%;
+  text-align: center;
+  margin: 0.5rem;
+  background-color: red;
+  border: 2px solid red;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px white;
+  font-weight: bold;
+  color: white;
+}

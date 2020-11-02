@@ -218,7 +218,7 @@ class VisitorForm extends Component<VisitorFormProps, VisitorFormState> {
     const submitDisabled =
       form.btnDisabled || locationChecklist.length !== locationChecklist.reduce((a, c) => (a += c.checked ? 1 : 0), 0);
     const checklist = form.btnText === "Check Out" || form.btnText === "Goodbye" || this._countdown > 0 ? null : <Checklist />;
-    const demoWarning = (locationID === "8634291744168120016") ? <p style={{fontSize: "200%"}}>This is a demonstration page. If you have arrived here by accident, please scan the QR Code again or ask for assistance.</p> : null;
+    const demoWarning = (locationID === "8634291744168120016") ? <p className="demo-warning">This is a demonstration page. If you have arrived here by accident, please scan the QR Code again or ask for assistance.</p> : null;
     return (
       <div className="VisitorForm">
         {successMsg}
