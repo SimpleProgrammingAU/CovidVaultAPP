@@ -6,7 +6,7 @@
   "dependencies": {
     "@material-ui/core": "4.11.0",
     "audit": "0.0.6",
-    "axios": "0.20.0",
+    "axios": "0.21.1",
     "ordinal": "1.0.3",
     "fix": "0.0.6",
     "query-string": "6.13.1",
